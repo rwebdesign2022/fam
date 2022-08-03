@@ -55,53 +55,65 @@
                 <p>In comparison, another case was found to be not urgent, involving spousal and child support. In Thies v Thies caselaw, the parties separated after being married for 12 years. The Mom owned a small business, which was shut down since March 25, 2019., but she still has to pay ongoing business expenses, as well as the living expenses for herself and the children. The husband was in arrears. The judge found that the evidence did not amount to dire financial circumstances and that the Mom needed to provide more evidence, such as her previous income before the pandemic, her current total income, her current total expenses and the full extent and details of her financial resources. One thing she could have done was to provide an up-to-date financial statement showing all her expenses and income as well as her assets and debts to create more concrete evidence.</p>
                 <p>When you haven’t seen your kids in a significantly long time, Courts paradoxically will not consider that urgent because there has been no recent change in status quo (unless the kids were at risk of harm). </p>
                 <p>During the Covid-19 pandemic, an urgent concern could be dealt with immediately if it seriously affects the health, safety and financial well-being of the parties involved, and their children. The concern must not be speculative, but must be based on something concrete, and the concern must be clearly laid out in the evidence brought before the Court on an Urgent Motion.</p>
-                                          <template>
-                <div class="white-bg no-top-padding" style="text-align: center">
-                    <br>
-                    <h2 class="text-center">Call us today for a free consultation</h2>
-                    <br>
-                    <v-responsive>
-                        <v-lazy :options="{threshold: .9}" transition="scale-transition">
-                            <div>
-                                <v-btn outlined color="#e99c46" fab x-large dark :href="contactInfo.phoneNumber.href">
-                                    <v-icon>mdi-phone</v-icon>
-                                </v-btn>
-                                <br>
-                                <br>
-                                <span style="font-size: 1.5rem" class="text-center">
+                <template>
+                    <div class="white-bg no-top-padding" style="text-align: center">
+                        <br>
+                        <h2 class="text-center">Call us today for a free consultation</h2>
+                        <br>
+                        <v-responsive>
+                            <v-lazy :options="{threshold: .9}" transition="scale-transition">
+                                <div>
+                                    <v-btn outlined color="#e99c46" fab x-large dark :href="contactInfo.phoneNumber.href">
+                                        <v-icon>mdi-phone</v-icon>
+                                    </v-btn>
+                                    <br>
+                                    <br>
+                                    <span style="font-size: 1.5rem" class="text-center">
                                     {{contactInfo.phoneNumber.val}}
+                                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfL5K82K9MzHyslLRgVlqm5wMu5C3LRaWL9tTSB7t_Ghascrw/viewform?embedded=true" width="640" height="971" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+
                                 </span>
-                            </div>
-                        </v-lazy>
-                    </v-responsive>
-                    <br>
-                    <br>
-                    <h2 class="text-center">We accept Legal Aid!</h2>
+                                </div>
+                            </v-lazy>
+                        </v-responsive>
+                        <br>
+                        <br>
+                        <h2 class="text-center">We accept Legal Aid!</h2>
+                    </div>
+              
                 </div>
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfL5K82K9MzHyslLRgVlqm5wMu5C3LRaWL9tTSB7t_Ghascrw/viewform?embedded=true" width="640" height="971" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-            </template>
+                </template>
+                <template>
+                    <div class="white-bg">
+                        <h2 class="text-center">Contact Us</h2>
+                        <br>
+
+                    </div>
+                </template>
+            </div>
             </div>
         </v-main>
         <div id="bg">
-            <img src="images/444.jpeg">
+            <img src="images/bg.jpeg">
         </div>
         <template>
             <footer>
-                 <span>702-1 Concorde Gate, Toronto, ON M3C 3N6</span><br>
-                <span>110 James St, St. Catharines, ON L2R 7E8</span>
+                            <span>702-1 Concorde Gate, Toronto, ON M3C 3N6</span>
                 <br>
-                
+                <span>110 James Street, St. Catharines, ON L2R 7E8</span>
+                <br>
+                <!-- By Thanh Tran - thanh-tran@hotmail.com -->
             </footer>
         </template>
     </v-app>
 </div>
 <script>
-    var cas = new Vue({
-        el: '#domestic-abuse-areas',
+    var um = new Vue({
+        el: '#urgent-motions-areas',
         vuetify: new Vuetify(),
         data: {
             mobile: false,
-            selectedTab: 4,
+            selectedTab: 3,
             more: [
                 {value:'Home', id:'index'}, {value:'Practice Areas', id:'practice-areas'}, {value:'CAS Application', id:'cas-applications'}, {value:'Urgent Motions', id:'urgent-motions'}, {value:'Domestic Abuse', id:'domestic-abuse'}
             ],
