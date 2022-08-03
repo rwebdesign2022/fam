@@ -78,32 +78,31 @@
                 <video  controls src="three.mp4"></video>
             </div>
             <div class="white-bg no-top-padding">
-                <template>
-                    <div class="white-bg no-top-padding" style="text-align: center">
-                        <br>
-                        <h2 class="text-center">Call us today. We can help. 
-                        </h2>
-                        <br>
-                        <v-responsive>
-                            <v-lazy :options="{threshold: .9}" transition="scale-transition">
-                                <div>
-                                    <v-btn outlined color="#e99c46" fab x-large dark :href="contactInfo.phoneNumber.href">
-                                        <v-icon>mdi-phone</v-icon>
-                                    </v-btn>
-                                    <br>
-                                    <br>
-                                    <span style="font-size: 1.5rem" class="text-center">
+            <template>
+                <div class="white-bg no-top-padding" style="text-align: center">
+                    <br>
+                    <h2 class="text-center">Call us today for a free consultation</h2>
+                    <br>
+                    <v-responsive>
+                        <v-lazy :options="{threshold: .9}" transition="scale-transition">
+                            <div>
+                                <v-btn outlined color="#e99c46" fab x-large dark :href="contactInfo.phoneNumber.href">
+                                    <v-icon>mdi-phone</v-icon>
+                                </v-btn>
+                                <br>
+                                <br>
+                                <span style="font-size: 1.5rem" class="text-center">
                                     {{contactInfo.phoneNumber.val}}
                                 </span>
-                                </div>
-                            </v-lazy>
-                        </v-responsive>
-                        <br>
-                        <br>
-                        <h2 class="text-center">We accept Legal Aid!</h2>
-                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfL5K82K9MzHyslLRgVlqm5wMu5C3LRaWL9tTSB7t_Ghascrw/viewform?embedded=true" width="640" height="971" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-                    </div>
-                </template>
+                            </div>
+                        </v-lazy>
+                    </v-responsive>
+                    <br>
+                    <br>
+                    <h2 class="text-center">We accept Legal Aid!</h2>
+                </div>
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfL5K82K9MzHyslLRgVlqm5wMu5C3LRaWL9tTSB7t_Ghascrw/viewform?embedded=true" width="640" height="971" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            </template>
            
             </div>
         </v-main>
