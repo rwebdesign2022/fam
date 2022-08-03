@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/vue-scrollto"></script>
+    <link rel="stylesheet" href="style/style.css">
+    <title>Trial Lawyers - We Accept Legal Aid</title>
+</head>
+<style>
+    .nav-button:hover{
+        background-color: #080808 !important;
+        color: white;
+        font-weight: bold !important;
+        font-size: 150% !important;
+        transition: all 200ms !important;
+    }
+
+</style>
+<body>
+<div id="app" :class="mobile===false? 'main-section' : 'main-section-mobile'">
+    <v-app v-resize="onResize"  v-scroll="onScroll">
+<!--        <template>-->
+<!--            <v-app-bar-->
+<!--                    fixed-->
+<!--                    dense-->
+<!--                    dark-->
+<!--                    inverted-scroll>-->
+<!--                    <v-tabs left style="padding-left: 20px">-->
+<!--                        <v-hover>-->
+<!--                            <v-card :href="contactInfo.phoneNumber.href"-->
+<!--                                    style="background-color: transparent">-->
+<!--                                <v-img src="images/logos/nav_logo_white.png" ></v-img>-->
+<!--                            </v-card>-->
+<!--                        </v-hover>-->
+<!--                    </v-tabs>-->
+<!--                    <v-tabs v-model="selectedTab"  right class="tabs">-->
+<!--                        <v-tab @click="tabClick" key=0 v-scroll-to="{ element: '#app', onDone: runTabClick, duration: 1000 }">Home</v-tab>-->
+<!--                        <v-tab  @click="tabClick" key=1 v-scroll-to="{ element: '#intro', onDone: runTabClick, offset: -45, duration: 1000  }">About Us</v-tab>-->
+<!--                        <v-tab @click="tabClick" key=2 v-scroll-to="{ element: '#advocacy-area', onDone: checkItOut, offset: -45, duration: 1000}">Advocacy</v-tab>-->
+<!--                        <v-tab  @click="tabClick" key=3 v-scroll-to="{ element: '#news-section', onDone: toNews, offset: -45, duration: 1000}">News</v-tab>-->
+<!--                        <v-menu-->
+<!--                                v-if="more.length"-->
+<!--                                bottom-->
+<!--                                left-->
+<!--                                dark-->
+<!--                        >-->
+<!--                            <template v-slot:activator="{ on, attrs }">-->
+<!--                                <v-btn-->
+<!--                                        text-->
+<!--                                        class="align-self-center mr-4"-->
+<!--                                        v-bind="attrs"-->
+<!--                                        v-on="on">-->
+<!--                                    more-->
+<!--                                    <v-icon right>mdi-menu-down</v-icon>-->
+<!--                                </v-btn>-->
+<!--                            </template>-->
+<!--                            <v-list>-->
+<!--                                <v-list-item-->
+<!--                                        v-for="item in more"-->
+<!--                                        :key="item.id"-->
+<!--                                        @click="goToPage(item.id)">-->
+<!--                                    {{ item.value }}-->
+<!--                                </v-list-item>-->
+<!--                            </v-list>-->
+<!--                        </v-menu>-->
+<!--                    </v-tabs>-->
+<!--            </v-app-bar>-->
+<!--        </template>-->
+        <v-main>
+            <v-img src="images/logos/logo-with-number.png" class="animate__animated animate__fadeInLeft"></v-img>
+                <v-img src="images/logos/about-logo.png"></v-img>
+                <div style="background-color: blue">
+                <div class="white-bg" style="padding-bottom: 20px">
+                    <ul class="menu">
+                        <li class="nav-button" v-for="(item, i) in more" :key=i  @click="goToPage(item.id)">
+                            {{item.value}}
+                        </li>
+                    </ul>
+                </div>
+        <div class="hidden" id="intro"></div>
+        <div class="white-bg">
+            <v-responsive class="text-center pa-2"
+                          v-for="person in team">
+<!--                <v-lazy-->
+<!--                        :min-height="300"-->
+<!--                        v-model="teamLoaded"-->
+<!--                        :options="{threshold: .9}"-->
+<!--                        transition="fade-transition">-->
+                        <v-hover v-slot:default="{ hover }">
+                            <v-card class="mx-auto" flat>
+                                <v-img :src="hover ?  person.profile : person.profilebw"></v-img>
+                            </v-card>
+                        </v-hover>
+<!--                </v-lazy>-->
+            </v-responsive>
+            <div id="advocacy-area" class="no-top-padding text-center">
+                <h1 class="intro-title">
+                    {{secondHeader}}
+                </h1>
+                <hr>
+<br>
+                           <h2 style="border: 2px solid black; background-color: beige; font-family: Garamond; font-size: 20pt margin: 10px; padding: 20px;">Send Us a Message<br>
+                <p style="border: 2px solid black; background-color: lightblue; font-family: Garamond; font-size: 25px margin: 10px; padding: 20px;" >Our first meeting is to try to gain a better understanding of your legal situation. The best way for us to make progress is to be organized. Prepare your own written summary of the events leading up to your legal situation, the facts and circumstances surrounding your legal issues, and your background and any other relevant details. </p>
+                <br>
+                <template>
+                    <v-responsive>
+                        <v-lazy :options="{threshold: .9}" transition="scale-transition">
+                            <div>
+                                <v-btn outlined color="#e99c46" fab x-large dark :href="contactInfo.phoneNumber.href">
+                                    <v-icon>mdi-phone</v-icon>
+                                </v-btn>
+                                <br>
+                                <br>
+                                <span style="font-size: 1.5rem" class="text-center">
+                                    {{contactInfo.phoneNumber.val}}
+                                </span>
+                            </div>
+                        </v-lazy>
+                    </v-responsive>
+                    <br>
+                    <br>
+                    <p class="text-center" style="background-color: lightblue; border: 2px solid black; margin: 10px; padding: 20px; font-family: Garamond;"> If you are involved in a family law case or in a child protection case against the <a heref="https://protect-my-child.ca/cas-application.html">CAS or FACS</a> and need an expert in your corner, we can help.  </p></h2>
+                </template>
+            </div>
+            <v-img src="images/what-we-ligitate.png"></v-img>
+        </div>
+        <!--<template>
+            <iframe width="100%" height="700px" src="https://www.youtube.com/embed/GpISwVGKMpA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </template>-->
+            <div id="news-section"></div>
+<!--        <template>-->
+<!--            <v-carousel-->
+<!--                    show-arrows-->
+<!--                    hide-delimiter-background-->
+<!--                    height="600"-->
+<!--            >-->
+<!--                <v-carousel-item-->
+<!--                        v-for="(article, d) in articles">-->
+<!--                    <v-sheet-->
+<!--                            height="100%"-->
+<!--                            tile-->
+<!--                    >-->
+<!--                        <v-parallax-->
+<!--                                class="top-bot-padding"-->
+<!--                                :src="'images/second-conf-bg.jpg'"-->
+<!--                                height="600"-->
+<!--                                style="padding-left: 50px; padding-right: 50px;"-->
+<!--                                >-->
+<!--                            <h1 class="text-center">Family Law News</h1>-->
+<!--                            <v-row>-->
+<!--                                <v-col>-->
+<!--                                    <v-card color="white" height="100%" class="mx-auto animate__animated animate__backInRight">-->
+<!--                                        <br>-->
+<!--                                        <v-card-title class="card-title">{{article.title}}</v-card-title>-->
+<!--                                        <v-card-text>-->
+<!--                                            <p class="black&#45;&#45;text font-italic">{{article.description}}</p>-->
+<!--                                        </v-card-text>-->
+<!--                                        <v-card-actions right style="bottom: 0; position: absolute;">-->
+<!--                                            <v-spacer></v-spacer>-->
+<!--                                            <v-btn-->
+<!--                                                    :href="article.link"-->
+<!--                                                    target="_blank"-->
+<!--                                                    text-->
+<!--                                                    color="blue-grey darken-2">-->
+<!--                                                Link-->
+<!--                                            </v-btn>-->
+<!--                                            <v-btn icon-->
+<!--                                                   @click="article.like = !article.like"-->
+<!--                                            >-->
+<!--                                                <v-icon :class="article.like ? 'pink&#45;&#45;text darken-4' : 'blue-grey&#45;&#45;text darken-4'">mdi-heart</v-icon>-->
+<!--                                            </v-btn>-->
+<!--                                            <v-btn icon>-->
+<!--                                                <v-icon class="blue-grey&#45;&#45;text darken-4">mdi-share-variant</v-icon>-->
+<!--                                            </v-btn>-->
+<!--                                        </v-card-actions>-->
+<!--                                    </v-card>-->
+<!--                                </v-col>-->
+<!--                            </v-row>-->
+<!--                        </v-parallax>-->
+
+<!--                    </v-sheet>-->
+<!--                </v-carousel-item>-->
+<!--            </v-carousel>-->
+<!--        </template>-->
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfL5K82K9MzHyslLRgVlqm5wMu5C3LRaWL9tTSB7t_Ghascrw/viewform?embedded=true" width="640" height="971" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        <template>
+          
+            <footer>
+                            <span>702-1 Concorde Gate, Toronto, ON M3C 3N6</span>
+                <br>
+                <span>110 James Street, St. Catharines, ON L2R 7E8</span>
+                <br>
+                <br>
+         
+                <!-- By Thanh Tran - thanh-tran@hotmail.com -->
+                <span id="siteseal"><script async type="text/javascript" src="https://seal.godaddy.com/getSeal?sealID=yU4vw0LGTT22L0wRBlVw37DBnuY7PdxVkE2ZhZ29h68DvPmhZltQQR2nljsx"></script></span>
+            </footer>
+        </template>
+        <div id="bg">
+            <img src="images/9x.jpeg">
+        </div>
+    </v-app>
+</div>
+</body>
+
+
+</html>
