@@ -12,7 +12,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" rel="stylesheet" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/vue-scrollto"></script>
     <link rel="stylesheet" href="style/style.css">
-    <title>Trial Lawyers - We Accept Legal Aid</title>
+    <title>Trial Lawyers</title>
 </head>
 <style>
     .nav-button:hover{
@@ -131,6 +131,7 @@
                 </template>
             </div>
             <v-img src="images/what-we-ligitate.png"></v-img>
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfL5K82K9MzHyslLRgVlqm5wMu5C3LRaWL9tTSB7t_Ghascrw/viewform?embedded=true" width="640" height="971" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
         </div>
         <!--<template>
             <iframe width="100%" height="700px" src="https://www.youtube.com/embed/GpISwVGKMpA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -190,9 +191,10 @@
 <!--                </v-carousel-item>-->
 <!--            </v-carousel>-->
 <!--        </template>-->
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfL5K82K9MzHyslLRgVlqm5wMu5C3LRaWL9tTSB7t_Ghascrw/viewform?embedded=true" width="640" height="971" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+
+                </div>
+        </v-main>
         <template>
-          
             <footer>
                             <span>702-1 Concorde Gate, Toronto, ON M3C 3N6</span>
                 <br>
@@ -210,6 +212,170 @@
     </v-app>
 </div>
 </body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        require: 'vue-scrollto',
+        vuetify: new Vuetify(),
+        data:{
+            mobile: false,
+            formSuccess: 'nothing',
+            emailForm:{ name:'', email: '', phone: '', situation: '', legalaid:'' },
+            amountOfArticle: 0,
+            more: [
+                {value:'Home', id:'index'}, {value:'Practice Areas', id:'practice-areas'}, {value:'CAS Application', id:'cas-applications'}, {value:'Urgent Motions', id:'urgent-motions'}, {value:'Domestic Abuse', id:'domestic-abuse'}
+            ],
+            tabWasClick: false,
+            selectedTabTop: 0,
+            selectedTab: 0,
+            offsetTop: 0,
+            logo: "images/logo.jpg",
+            header: 'Being involved in a family law case is difficult and stressful. This is a time when you need a capable, knowledgeable and empathetic lawyer who can guide you and give you counsel that you can rely upon. I am that lawyer.<br><br>Don’t wait to take action. Our goal is to help you with your legal issues. Whatever legal challenges you are facing, we can help! ',
+            secondHeader: 'Knowledgeable & Effective',
+            thirdHeader: 'We Accept Legal Aid!',
+            windowSize: {
+                x: window.innerWidth,
+                y: window.innerHeight
+            },
+            teamLoaded: false,
+            team: [
+                {   profile: "images/js-profile.png",
+                    profilebw: "images/js-profile-bw.png",
+                    animation: "animate__animated animate__slideInRight" },
+                {   profile: "images/fr-profile.png",
+                    profilebw: "images/fr-profile-bw.png",
+                    animation: "animate__animated animate__slideInLeft" },
 
+            ],
+            typeOfCases: [
+                {title: "Family & Children Services | Litigation against CAS", entry: "You are a struggling parent. The CAS has launched a case against you with regards to your children alleging they are in need of protection or they are saying they will initiate a court case against you if you don't let your kids go to where the CAS or FACS wants them to go. I can help. Legal aid accepted." +
+                        "<br><br><strong>Do not wait or waste any time in hiring a lawyer as there is a lot of work to be done to give you the best possible chances of getting the outcome you desire.</strong>"},
+                {title: "Divorce & Separation | Cohabitation Agreements", entry: "Depending on your situation, the ideal scenario might be both parties agreeing to a separation agreement. This is a legally enforceable document that is very hard to set aside.<br><br>" +
+                        "If an agreement cannot be reached, you should pursue your rights in Court.<br><br>" +
+                        "Call me to discuss your options. "},
+                {title: "Custody | Access | Support | Interim Motions", entry: "Don't wait! Contact us for a free phone consultation.<br><br>" +
+                        "Let us help you figure out what your next best steps are, whether you are looking for child custody, child access or visitation rights<br><br>" +
+                        "The sooner you have a plan of action, the better your chances of taking the correct steps to get the results you want."}
+            ],
+            contactInfo: {
+                phoneNumber: {  val: '(289) 925-2376',
+                                href: 'tel:+2899252376',
+                                icon: 'mdi-phone'}
+            },
+            articles:[
+                {title: "'It was four years of my life on hold'- CAS whistleblower cleared",
+                    data: "June 5, 2020",
+                    description: '"For an agency that prides itself on confidentiality, Family and Children’s Services of Lanark, Leeds and Grenville had a website in 2016 that was anything but private."',
+                    link: "https://ottawacitizen.com/news/local-news/it-was-four-years-of-my-life-on-hold-cas-whistleblower-cleared-of-hacking-charges",
+                    like: false},
+                {title: "Co-Parenting and COVID-19: What's a Parent to Do?",
+                    data: "June 5, 2020",
+                    description: '“The crossover between family law and psychology is widely documented, and often professionals work in tandem to help families discover the best possible outcomes for themselves and their children. When thinking about planning or settlement, it is impossible to solely consider the aspects of what is “best” when the outcomes are so dependent on real people, children, and lifelong decision-making”.',
+                    link: "https://www.psychologytoday.com/ca/blog/when-family-law-becomes-criminal/202006/co-parenting-and-covid-19-whats-parent-do",
+                    like: false},
+                {title: "Pandemic strains local foster system",
+                    data: "May 27, 2020",
+                    description: '“The Children\'s Aid Society is appealing to the public for more foster families. The pandemic has slowed down the process of recruiting, training and monitoring new foster parents.”',
+                    link: "https://www.cbc.ca/news/canada/windsor/children-s-aid-society-pandemic-lyle-ward-foster-homes-children-1.5569956",
+                    like: false}
+            , {title: "Cornwall couple charged with child abandonment",
+                    data: "May 27, 2020",
+                    description: '“CORNWALL – A couple in their 20s has been charged with child abandonment after a police investigation on Fourth Street West”.',
+                    link: "https://www.cornwallnewswatch.com/2020/05/20/cornwall-couple-charged-with-child-abandonment/",
+                    like: false},
+                {title: "Guelph, Wellington children's aid says calls down about 50%",
+                    data: "May 27, 2020",
+                    description: '"Family and Children\'s Services of Guelph and Wellington County (FCSGWC) want people to know they are there to help, and that they likely aren\'t going to take your kids away if you need it".',
+                    link: "https://www.guelphmercury.com/news-story/9992302-guelph-wellington-children-s-aid-says-calls-down-about-50-per-cent/",
+                    like: false},
+                {title: "Kingston children’s aid sees layoffs due to ‘falling caseload",
+                    data: "May 27, 2020",
+                    description: '“Family and Children’s Services of Frontenac, Lennox and Addington announced Wednesday that several staff members would be laid off or not have their contract renewed”.',
+                    link: "https://globalnews.ca/news/6910973/kingston-childrens-aid-layoffs-falling-caseloads/",
+                    like: false},
+                {title: "What is my spouse entitled to if we divorce?",
+                    data: "May 27, 2020",
+                    description: '“While it may seem unfair that divorce law does not favour the party who didn’t initiate a separation, non-compliance will only cost you more in the end”.',
+                    link: "https://www.moneysense.ca/columns/ask-moneysense/what-do-i-owe-spouse-in-a-divorce/",
+                    like: false},
+                {title: "Judge cuts bus driver's parenting time",
+                    data: "May 27, 2020\n",
+                    description: '“A judge ordered a bus driver’s parenting time to be spent completely outdoors amid the pandemic to cut down on his children’s risk of infection”.',
+                    link: "https://business.financialpost.com/personal-finance/judge-cuts-bus-drivers-parenting-time-and-orders-it-take-place-outside-due-to-covid-19-risks",
+                    like: false},
+                {title: "Your property, and your family, deserve to be protected by will",
+                    data: "May 27, 2020",
+                    description: '“In these times of economic uncertainty, Canadians who own their own homes may be thinking about protecting them from health risks due to the COVID-19 pandemic’.',
+                    link: "https://www.thepeterboroughexaminer.com/ts/life/homes/2020/05/27/your-property-and-your-family-deserve-to-be-protected-in-your-will.html",
+                    like: false}
+                    ]
+        },
+        methods: {
+            onResize () {
+                this.windowSize = { x: window.innerWidth, y: window.innerHeight };
+                if ( window.outerWidth < 768 ){
+                    this.mobile = true;
+                }
+                else{
+                    this.mobile = false;
+                }
+            },
+            goToPage(page){
+                window.open(page +".html", "_self");
+            },
+            onScroll (e) {
+                if(window.scrollY == 0){
+                    this.selectedTabTop = 0;
+                }
+                if(this.tabWasClick == false ){
+                    if (window.scrollY +45 >= document.getElementById("intro").offsetTop && window.scrollY +45 < document.getElementById("advocacy-area").offsetTop ){
+                        this.selectedTab = 1;
+                    }
+                    else if (window.scrollY +45 >= document.getElementById("advocacy-area").offsetTop && window.scrollY +45 < document.getElementById("news-section").offsetTop ){
+                        this.selectedTab = 2;
+                    }
+                    else if (window.scrollY +45 >= document.getElementById("news-section").offsetTop ){
+                        this.selectedTab = 3;
+                    }else{
+                        this.selectedTab = 0;
+                    }
+                }
+            },
+            tabClick(){
+                this.tabWasClick = true;
+            },
+            runTabClick(){
+                this.tabWasClick = false;
+            },
+            checkItOut(){
+                this.$scrollTo('#advocacy-area', 1000, {offset: -45, onDone:this.tabWasClick=false,} );
+            },
+            toNews(){
+                this.$scrollTo('#news-section', 1000, {offset: -45, onDone:this.tabWasClick=false,} );
+            },
+            goToPage(page){
+              window.open(page +".html", "_self");
+
+            },
+            submit(){
+                axios
+                    .post('contact_me.php', JSON.stringify(this.emailForm))
+                    .then(response => this.successForm())
+                    .catch(error => (this.formSuccess = 'error'))
+                },
+            successForm(){
+                // clear form
+                for ( fields in this.emailForm){
+                    this.emailForm[fields] = '';
+                }
+                this.formSuccess = 'success';
+            }
+        },
+        mounted () {
+            this.amountOfArticle = this.articles.length/3;
+            this.onResize();
+        }
+    });
+</script>
 
 </html>
