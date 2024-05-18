@@ -414,10 +414,12 @@
 
             },
             submit(){
-                axios
+                /***axios
                     .post('contact_me.php', JSON.stringify(this.emailForm))
                     .then(response => this.successForm())
-                    .catch(error => (this.formSuccess = 'error'))
+                    .catch(error => (this.formSuccess = 'error'))***/
+                console.log(this.emailForm);
+
                 },
             successForm(){
                 // clear form
