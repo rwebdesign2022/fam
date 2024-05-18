@@ -126,7 +126,63 @@ In order for a recording taken in secret to be admitted into evidence in a famil
                     <br>
                     <h2 class="text-center">We accept Legal Aid!</h2>
                 </div>
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfL5K82K9MzHyslLRgVlqm5wMu5C3LRaWL9tTSB7t_Ghascrw/viewform?embedded=true" width="640" height="971" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                <template>
+                    <div class="white-bg" style="padding: 50px">
+                        <h2 class="text-center" style="font-size: 25pt; background-color: gold; border: 2px dotted black">Contact Us</h2>
+                        <br>
+                        <v-form id="#test">
+                            <v-text-field
+                                    v-model="emailForm.name"
+                                    label="Name"
+                                    placeholder="Name"
+                                    single-line
+                                    solo
+                            ></v-text-field>
+                            <v-text-field
+                                    v-model="emailForm.email"
+                                    label="Email"
+                                    placeholder="Email"
+                                    single-line
+                                    solo
+                            ></v-text-field>
+                            <v-text-field
+                                    v-model="emailForm.phone"
+                                    label="Phone"
+                                    placeholder="Phone"
+                                    single-line
+                                    solo
+                            ></v-text-field>
+                            <v-textarea
+                                    solo
+                                    v-model="emailForm.situation"
+                                    name="Situation"
+                                    placeholder="Situation, Background, Status of Your Case"
+                            ></v-textarea>
+                            <v-textarea
+                                    solo
+                                    v-model="emailForm.legalaid"
+                                    name="LegalAid"
+                                    placeholder="Additional Details"
+                            ></v-textarea>
+                            <v-alert
+                                    v-if="formSuccess === 'success'"
+                                    dense
+                                    text
+                                    type="success">
+                                    Message was successfully sent!
+                            </v-alert>
+                            <v-alert
+                                    v-if="formSuccess === 'error'"
+                                    dense
+                                    text
+                                    type="error">
+                                    Message was not successful, please try again later!
+                            </v-alert>
+      
+                            <v-btn class="mr-4" color="#e99c46" @click="submit">submit</v-btn>
+                        </v-form>
+                    </div>
+                </template>    
             </template>
             </div>
         </v-main>
@@ -175,11 +231,24 @@ In order for a recording taken in secret to be admitted into evidence in a famil
                 }
             },
             submit(){
-                axios
+                /***axios
                     .post('contact_me.php', JSON.stringify(this.emailForm))
                     .then(response => this.successForm())
-                    .catch(error => (this.formSuccess = 'error'))
-            },
+                    .catch(error => (this.formSuccess = 'error'))***/
+                    emailjs.send('service_td0pl07', 'template_9x5w68k', {
+        name: this.emailForm.name,
+        email: this.emailForm.email,
+        phone: this.emailForm.phone,
+        situation: this.emailForm.situation,
+        legalaid: this.emailForm.legalaid
+      }, 'QFncCo-jZ8f3J6Ru4')
+      .then(() => {
+        this.formSuccess = 'success';
+      })
+      .catch(() => {
+        this.formSuccess = 'error';
+      });
+                },
             successForm(){
                 // clear form
                 for ( fields in this.emailForm){
