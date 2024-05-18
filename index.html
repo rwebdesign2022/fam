@@ -26,6 +26,12 @@
         font-size: 150% !important;
         transition: all 200ms !important;
     }
+
+  
+
+  
+
+   
 </style>
 
 <body>
@@ -58,7 +64,19 @@
                             </v-hover>
                             <!--                </v-lazy>-->
                         </v-responsive>
+
+                        <div class="carousel-container">
+                          
+                        </div>
                         <div id="advocacy-area" class="no-top-padding text-center">
+
+                            <!-- <v-carousel-dots v-model="currentSlide" :length="slideshowImages.length" class="custom-pagination-dots"></v-carousel-dots> -->
+                            <v-carousel hide-delimiter-background height="300px">
+                                <v-carousel-item v-for="(image, index) in slideshowImages" :key="index">
+                                    <v-img :src="image.src" contain></v-img>
+                                </v-carousel-item>
+                            </v-carousel>
+
                             <h1 class="intro-title">
                                 {{secondHeader}}
                             </h1>
@@ -113,7 +131,7 @@
                             </v-carousel>
 
                             <v-carousel-dots v-model="currentVideo" :length="videos.length"></v-carousel-dots>
-                           
+
 
                         </div>
                         <template>
@@ -182,6 +200,16 @@
         vuetify: new Vuetify(),
         data: {
             currentVideo: 0,
+            slideshowImages: [
+                { src: 'review1.png' },
+                { src: 'review2.png' },
+                { src: 'review3.png' },
+                { src: 'review4.png' },
+                { src: 'review5.png' },
+                { src: 'review6.png' },
+                // Add more images here...
+            ],
+            currentSlide: 0,
             videos: [
                 { src: 'a.mp4' },
                 { src: 'b.mp4' },
