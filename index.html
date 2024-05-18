@@ -101,8 +101,11 @@
                             </h2>
                             </template>
                         </div>
+                        <v-img src="2.png" contain></v-img>
                         <v-img src="images/what-we-ligitate.png"></v-img>
+                        <v-img src="3.png" contain></v-img>
                         <div id="video-slideshow">
+
                             <v-carousel v-model="currentVideo" hide-delimiter-background>
                                 <v-carousel-item v-for="(video, index) in videos" :key="index">
                                     <video controls :src="video.src" type="video/mp4"></video>
@@ -110,6 +113,8 @@
                             </v-carousel>
 
                             <v-carousel-dots v-model="currentVideo" :length="videos.length"></v-carousel-dots>
+                           
+
                         </div>
                         <template>
                             <div class="white-bg" style="padding: 50px">
@@ -137,6 +142,8 @@
 
                                     <v-btn class="mr-4" color="#e99c46" @click="submit">submit</v-btn>
                                 </v-form>
+                                <v-img src="1.png" contain></v-img>
+
                             </div>
                         </template>
                     </div>
