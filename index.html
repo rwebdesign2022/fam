@@ -31,53 +31,7 @@
 <body>
     <div id="app" :class="mobile===false? 'main-section' : 'main-section-mobile'">
         <v-app v-resize="onResize" v-scroll="onScroll">
-            <!--        <template>-->
-            <!--            <v-app-bar-->
-            <!--                    fixed-->
-            <!--                    dense-->
-            <!--                    dark-->
-            <!--                    inverted-scroll>-->
-            <!--                    <v-tabs left style="padding-left: 20px">-->
-            <!--                        <v-hover>-->
-            <!--                            <v-card :href="contactInfo.phoneNumber.href"-->
-            <!--                                    style="background-color: transparent">-->
-            <!--                                <v-img src="images/logos/nav_logo_white.png" ></v-img>-->
-            <!--                            </v-card>-->
-            <!--                        </v-hover>-->
-            <!--                    </v-tabs>-->
-            <!--                    <v-tabs v-model="selectedTab"  right class="tabs">-->
-            <!--                        <v-tab @click="tabClick" key=0 v-scroll-to="{ element: '#app', onDone: runTabClick, duration: 1000 }">Home</v-tab>-->
-            <!--                        <v-tab  @click="tabClick" key=1 v-scroll-to="{ element: '#intro', onDone: runTabClick, offset: -45, duration: 1000  }">About Us</v-tab>-->
-            <!--                        <v-tab @click="tabClick" key=2 v-scroll-to="{ element: '#advocacy-area', onDone: checkItOut, offset: -45, duration: 1000}">Advocacy</v-tab>-->
-            <!--                        <v-tab  @click="tabClick" key=3 v-scroll-to="{ element: '#news-section', onDone: toNews, offset: -45, duration: 1000}">News</v-tab>-->
-            <!--                        <v-menu-->
-            <!--                                v-if="more.length"-->
-            <!--                                bottom-->
-            <!--                                left-->
-            <!--                                dark-->
-            <!--                        >-->
-            <!--                            <template v-slot:activator="{ on, attrs }">-->
-            <!--                                <v-btn-->
-            <!--                                        text-->
-            <!--                                        class="align-self-center mr-4"-->
-            <!--                                        v-bind="attrs"-->
-            <!--                                        v-on="on">-->
-            <!--                                    more-->
-            <!--                                    <v-icon right>mdi-menu-down</v-icon>-->
-            <!--                                </v-btn>-->
-            <!--                            </template>-->
-            <!--                            <v-list>-->
-            <!--                                <v-list-item-->
-            <!--                                        v-for="item in more"-->
-            <!--                                        :key="item.id"-->
-            <!--                                        @click="goToPage(item.id)">-->
-            <!--                                    {{ item.value }}-->
-            <!--                                </v-list-item>-->
-            <!--                            </v-list>-->
-            <!--                        </v-menu>-->
-            <!--                    </v-tabs>-->
-            <!--            </v-app-bar>-->
-            <!--        </template>-->
+
             <v-main>
                 <v-img src="images/logos/logo-with-number.png" class="animate__animated animate__fadeInLeft"></v-img>
                 <v-img src="images/logos/about-logo.png"></v-img>
@@ -148,6 +102,15 @@
                             </template>
                         </div>
                         <v-img src="images/what-we-ligitate.png"></v-img>
+                        <div id="video-slideshow">
+                            <v-carousel v-model="currentVideo" hide-delimiter-background>
+                                <v-carousel-item v-for="(video, index) in videos" :key="index">
+                                    <video controls :src="video.src" type="video/mp4"></video>
+                                </v-carousel-item>
+                            </v-carousel>
+
+                            <v-carousel-dots v-model="currentVideo" :length="videos.length"></v-carousel-dots>
+                        </div>
                         <template>
                             <div class="white-bg" style="padding: 50px">
                                 <h2 class="text-center"
@@ -181,60 +144,6 @@
             <iframe width="100%" height="700px" src="https://www.youtube.com/embed/GpISwVGKMpA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </template>-->
                     <div id="news-section"></div>
-                    <!--        <template>-->
-                    <!--            <v-carousel-->
-                    <!--                    show-arrows-->
-                    <!--                    hide-delimiter-background-->
-                    <!--                    height="600"-->
-                    <!--            >-->
-                    <!--                <v-carousel-item-->
-                    <!--                        v-for="(article, d) in articles">-->
-                    <!--                    <v-sheet-->
-                    <!--                            height="100%"-->
-                    <!--                            tile-->
-                    <!--                    >-->
-                    <!--                        <v-parallax-->
-                    <!--                                class="top-bot-padding"-->
-                    <!--                                :src="'images/second-conf-bg.jpg'"-->
-                    <!--                                height="600"-->
-                    <!--                                style="padding-left: 50px; padding-right: 50px;"-->
-                    <!--                                >-->
-                    <!--                            <h1 class="text-center">Family Law News</h1>-->
-                    <!--                            <v-row>-->
-                    <!--                                <v-col>-->
-                    <!--                                    <v-card color="white" height="100%" class="mx-auto animate__animated animate__backInRight">-->
-                    <!--                                        <br>-->
-                    <!--                                        <v-card-title class="card-title">{{article.title}}</v-card-title>-->
-                    <!--                                        <v-card-text>-->
-                    <!--                                            <p class="black&#45;&#45;text font-italic">{{article.description}}</p>-->
-                    <!--                                        </v-card-text>-->
-                    <!--                                        <v-card-actions right style="bottom: 0; position: absolute;">-->
-                    <!--                                            <v-spacer></v-spacer>-->
-                    <!--                                            <v-btn-->
-                    <!--                                                    :href="article.link"-->
-                    <!--                                                    target="_blank"-->
-                    <!--                                                    text-->
-                    <!--                                                    color="blue-grey darken-2">-->
-                    <!--                                                Link-->
-                    <!--                                            </v-btn>-->
-                    <!--                                            <v-btn icon-->
-                    <!--                                                   @click="article.like = !article.like"-->
-                    <!--                                            >-->
-                    <!--                                                <v-icon :class="article.like ? 'pink&#45;&#45;text darken-4' : 'blue-grey&#45;&#45;text darken-4'">mdi-heart</v-icon>-->
-                    <!--                                            </v-btn>-->
-                    <!--                                            <v-btn icon>-->
-                    <!--                                                <v-icon class="blue-grey&#45;&#45;text darken-4">mdi-share-variant</v-icon>-->
-                    <!--                                            </v-btn>-->
-                    <!--                                        </v-card-actions>-->
-                    <!--                                    </v-card>-->
-                    <!--                                </v-col>-->
-                    <!--                            </v-row>-->
-                    <!--                        </v-parallax>-->
-
-                    <!--                    </v-sheet>-->
-                    <!--                </v-carousel-item>-->
-                    <!--            </v-carousel>-->
-                    <!--        </template>-->
 
                 </div>
             </v-main>
@@ -265,6 +174,34 @@
         require: 'vue-scrollto',
         vuetify: new Vuetify(),
         data: {
+            currentVideo: 0,
+            videos: [
+                { src: 'a.mp4' },
+                { src: 'b.mp4' },
+                { src: 'c.mp4' },
+                { src: 'e.mp4' },
+                { src: 'a1.mp4' },
+                { src: 'a2.mp4' },
+                { src: 'a3.mp4' },
+                { src: 'a4.mp4' },
+                { src: 'a5.mp4' },
+                { src: 'a6.mp4' },
+                { src: 'a7.mp4' },
+                { src: 'a8.mp4' },
+                { src: 'a9.mp4' },
+                { src: 'x1.mp4' },
+                { src: 'x3.mp4' },
+                { src: 'x5.mp4' },
+                { src: 'a10.mp4' },
+                { src: 'a11.mp4' },
+                { src: 'a12.mp4' },
+                { src: 'a13.mp4' },
+                { src: 'two.mp4' },
+                { src: 'criminal-defence.mp4' },
+                { src: 'law-video-revised.mp4' },
+                { src: 'children-law-revised.mp4' },
+                // Add more videos here...
+            ],
             mobile: false,
             formSuccess: 'nothing',
             emailForm: { name: '', email: '', phone: '', situation: '', legalaid: '' },
@@ -388,6 +325,7 @@
             ]
         },
         methods: {
+
             onResize() {
                 this.windowSize = { x: window.innerWidth, y: window.innerHeight };
                 if (window.outerWidth < 768) {
