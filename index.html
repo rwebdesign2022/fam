@@ -418,8 +418,19 @@
                     .post('contact_me.php', JSON.stringify(this.emailForm))
                     .then(response => this.successForm())
                     .catch(error => (this.formSuccess = 'error'))***/
-                console.log(this.emailForm);
-
+                    emailjs.send('service_td0pl07', 'template_9x5w68k', {
+        name: this.emailForm.name,
+        email: this.emailForm.email,
+        phone: this.emailForm.phone,
+        situation: this.emailForm.situation,
+        legalaid: this.emailForm.legalaid
+      }, 'QFncC0-jZ8f3J6Ru4')
+      .then(() => {
+        this.formStatus = 'success';
+      })
+      .catch(() => {
+        this.formStatus = 'error';
+      });
                 },
             successForm(){
                 // clear form
