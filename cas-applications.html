@@ -9,6 +9,8 @@
     <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" rel="stylesheet" type="text/css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
     <link rel="stylesheet" href="style/style.css">
     <title>CAS Application</title>
 </head>
@@ -46,8 +48,7 @@
                 <v-img src="images/cas-3.png"></v-img>
                 <span style="font-size: 1.5rem" class="text-center">
                                     {{contactInfo.phoneNumber.val}}
-                                 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfL5K82K9MzHyslLRgVlqm5wMu5C3LRaWL9tTSB7t_Ghascrw/viewform?embedded=true" width="640" height="971" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-
+                               
                                 </span>
                 <br>
                                 <h2>A Concise Primer on the Role of the Office of the Children's Lawyer in Family and CAS/FACS Proceedings</h2>
@@ -211,11 +212,24 @@
                 }
             },
             submit(){
-                axios
+                /***axios
                     .post('contact_me.php', JSON.stringify(this.emailForm))
                     .then(response => this.successForm())
-                    .catch(error => (this.formSuccess = 'error'))
-            },
+                    .catch(error => (this.formSuccess = 'error'))***/
+                    emailjs.send('service_td0pl07', 'template_9x5w68k', {
+        name: this.emailForm.name,
+        email: this.emailForm.email,
+        phone: this.emailForm.phone,
+        situation: this.emailForm.situation,
+        legalaid: this.emailForm.legalaid
+      }, 'QFncCo-jZ8f3J6Ru4')
+      .then(() => {
+        this.formSuccess = 'success';
+      })
+      .catch(() => {
+        this.formSuccess = 'error';
+      });
+                },
             successForm(){
                 // clear form
                 for ( fields in this.emailForm){
